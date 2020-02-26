@@ -25,44 +25,55 @@ def answer_time(x):
 
 
 ### Generate table of random values
-rand_seeds = rand16bit(n*4*5)
-probs = [0]*n
-# rand_seeds.print()
-for i in range(n):
-    probs[i] = [0]*n_calls
-    for j in range(n_calls):
-        probs[i][j] = [0]*5
-        for k in range(5):
-            # print("({:d}, {:d}, {:d}) = {:d}".format(i,j,k, (i*20) + (j*5) + k))
-            # print(rand_seeds.getX((i*20) + (j*5) + k))
-            probs[i][j][k] = rand_seeds.getU((i*5*n_calls) + (j*5) + k)
+rands = rand16bit(n*4*2)
+## Index for table of randoms based on 3d matrix
+def index(i, j, k):
+    return (i*2*n_calls) + (j*2) + k
 
 ### Print random values
-# if True:
-if False:
-    for i in range(len(probs)):
-        for j in range(n_calls):
-            print(probs[i][j])
-        print()
+for i in range(0):
+    for j in range(n_calls):
+        print(str(rands.getX(index(i, j, 0)))+ ", " + str(rands.getX(index(i, j, 1))))
+    print()
 
 
 ### Simulate calls
-for i in range(len(probs)):
+results = open("results.csv", "w")
+results.write("trial, time, calls code, call 0, call 1, call 2, call 3\n")
+for i in range(n):
+    ## Initialize trial
+    print("trial: " + str(i))
     time = 0.0
-    print("sim: " + str(i))
+    record = ""
+    record_code = ""
+
     for j in range(n_calls):
         time += t_dial
+
         ## Line is busy
-        if (probs[i][j][0] < p_busy):
+        if (rands.getU(index(i, j, 0)) < p_busy):
             time += t_busy + t_end
+            record += ", busy"
+            record_code += "b"
             print ("    call " + str(j) + " busy")
+
         ## Call is unanswered
-        elif (probs[i][j][0] < p_busy + p_unanswered):
+        elif (rands.getU(index(i, j, 0)) < p_busy + p_unanswered):
             time += t_ring + t_end
+            record += ", unanswered"
+            record_code += "u"
             print ("    call " + str(j) + " unanswered")
+
         ## Call is answered
         else:
-            time += answer_time(probs[i][j][1])
+            time += answer_time(rands.getU(index(i, j, 1)))
             print ("    call " + str(j) + " answered")
+            record += ", answered"
+            record_code += "a"
             break
+
+    ## Output final trail results
     print("  total time: " + str(time))
+    while (len(record_code) < 4):
+        record_code += "-"
+    results.write(str(i) + ", " + str(time) + ", " + record_code + record + "\n")
