@@ -2,3 +2,8 @@
 test.*
 __pycache__
 results.csv
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.synctex.gz
