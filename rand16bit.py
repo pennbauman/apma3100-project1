@@ -16,7 +16,7 @@ class rand16bit:
     ## Grow array of pseudo-random numbers to size n
     def grow(self, n):
         while (len(self.x) <= n):
-            self.x.append( (self.a*self.x[len(self.x) - 2] + self.c) % self.k )
+            self.x.append( (self.a*self.x[len(self.x) - 1] + self.c) % self.k )
 
     ## Print array fo pseudo-random numbers
     def print(self):
