@@ -14,89 +14,56 @@
 
 \begin{document}
 
-Answer Distribution Calculations
+\section{Answer Distribution Calculations}
 
 Basic Requirements:
 \begin{align*}
-	f(t) &= A \lambda e^{-\lambda t} \\
-	F(t_f) &= \int_{0}^{t_f} f(t) dt \\
-	F(t_{max}) &= 1 \\
+	f(t) &= \lambda e^{-\lambda t} \\
+	F(T) &= \int_{0}^{T} f(t) dt \\
+	F(\infty) &= 1 \\
 	E[f(t)] &= \mu \\
 \end{align*}
-
-Determine $F(t_f)$:
+Determine $F(T)$:
 \begin{align*}
-	F(t_f) &= \int_{0}^{t_f} f(t) dt \\
-		&= \int_{0}^{t_f} A \lambda e^{-\lambda t} dt \\
-		&= \left[-A e^{-\lambda t}\right]_{0}^{t_f} \\
-		&= -A e^{-\lambda t_f} + A e^{-\lambda 0} \\
-		&= A(1 - e^{-\lambda t_f})
+	F(T) &= \int_{0}^{T} f(t) dt \\
+		&= \int_{0}^{T} \lambda e^{-\lambda t} dt \\
+		&= \left[-e^{-\lambda t}\right]_{0}^{T} \\
+		&= -e^{-\lambda T} + e^{-\lambda 0} \\
+	F(T) &= 1 - e^{-\lambda T}
 \end{align*}
-
-Determine $F(t_{max})$:
+Determine $\lambda$:
 \begin{align*}
-	F(t_{max}) &= A(1 - e^{-\lambda t_{max}}) \\
-	1 &= A(1 - e^{-\lambda t_{max}}) \\
-	\frac{1}{A} &= 1 - e^{-\lambda t_{max}} \\
-	\frac{1 - A}{A} &= -e^{-\lambda t_{max}} \\
-	e^{-\lambda t_{max}} &= \frac{A - 1}{A} \\
-	-\lambda t_{max} &= \ln\left(\frac{A - 1}{A}\right) \\
-	\lambda &= \frac{-1}{t_{max}} \ln\left(\frac{A - 1}{A}\right)
+	E[f(t)] &= \int_{0}^{\infty} t f(t) dt \\
+		&= \int_{0}^{\infty} \lambda t e^{-\lambda t} dt \\
+		\\
+	u = t & \ \ \ \ \ \ \ \ \ dv = \lambda e^{-\lambda t} dt \\
+	du  =  dt & \ \ \ \ \ \ \ \ \ v = -e^{-\lambda t} \\
+		\\
+		&= \left[-t e^{-\lambda t}\right]_{0}^{\infty} - \int_{0}^{\infty} - e^{-\lambda t} dt \\
+		&= \left[-t e^{-\lambda t} - \frac{e^{-\lambda t}}{\lambda}\right]_{0}^{\infty} \\
+		&= -\infty e^{-\lambda \infty} - \frac{e^{-\lambda \infty}}{\lambda}
+		+ 0 e^{-\lambda 0} + \frac{e^{-\lambda 0}}{\lambda} \\
+		&= 0 - 0 + 0 + \frac{1}{\lambda} \\
+	\mu &= \frac{1}{\lambda}
 \end{align*}
-
-Determine $E(a)$:
+Determine $T(F)$:
 \begin{align*}
-	E[f(t)] &= \int_{0}^{t_{max}} t f(t) dt \\
-		&= \int_{0}^{t_{max}} A \lambda t e^{-\lambda t} dt \\
-	u = t\ \ \ \ &\ \ \ \ \ dv = \lambda e^{-\lambda t} dt \\
-	du  =  dt \ \ \ \ &\ \ \ \ \ v = -e^{-\lambda t} \\
-		&= A\left[-t e^{-\lambda t}\right]_{0}^{t_{max}} - \int_{0}^{t_{max}} -A e^{-\lambda t} dt \\
-		&= A\left[-t e^{-\lambda t} - \frac{e^{-\lambda t}}{\lambda}\right]_{0}^{t_{max}} \\
-		&= A\left( -t_{max} e^{-\lambda t_{max}} - \frac{e^{-\lambda t_{max}}}{\lambda}
-		+ 0 e^{-\lambda 0} + \frac{e^{-\lambda 0}}{\lambda} \right) \\
-		&= A \left(\frac{1}{\lambda} - t_{max} e^{-\lambda t_{max}} - \frac{e^{-\lambda t_{max}}}{\lambda}\right) \\
+	F(T) &= 1 - e^{-\lambda T} \\
+	1 - F &= e^{-\lambda T} \\
+	\ln(1 - F) &= \ln(e^{-\lambda T}) \\
+	-\lambda T &= \ln(1 - F) \\
+	T(F) &= \frac{-\ln(1 - F)}{\lambda}
 \end{align*}
-
+Final Equations:
 \begin{align*}
-	\lambda &= \frac{-1}{t_{max}} \ln\left(\frac{A - 1}{A}\right) \\
-			&= A \left(\frac{-t_{max}}{\ln\left(\frac{A-1}{A}\right)} - t_{max} e^{\frac{\ln\left(\frac{A-1}{A}\right)}{t_{max}} t_{max}} + \frac{t_{max} e^{\frac{\ln\left(\frac{A-1}{A}\right)}{t_{max}} t_{max}}}{\ln\left(\frac{A-1}{A}\right)}\right) \\
-			&= A t_{max} \left(\frac{-1}{\ln\left(\frac{A-1}{A}\right)} - e^{\ln\left(\frac{A-1}{A}\right)} + \frac{e^{\ln\left(\frac{A-1}{A}\right)}}{\ln\left(\frac{A-1}{A}\right)}\right) \\
-			&= A t_{max} \left( \frac{\frac{A-1}{A} - 1}{\ln\left(\frac{A-1}{A}\right)} - \frac{A-1}{A} \right) \\
-			&= A t_{max} \left( \frac{\frac{A-1}{A} - 1}{\ln\left(\frac{A-1}{A}\right)} - \frac{\frac{A-1}{A} \ln\left(\frac{A-1}{A}\right)}{\ln\left(\frac{A-1}{A}\right)} \right) \\
-\end{align*}
-
-\begin{align*}
-	\mu &= \frac{A t_{max}}{\ln\left(\frac{A-1}{A}\right)} \left( \frac{A-1}{A} - 1 - \frac{A-1}{A} \ln\left(\frac{A-1}{A}\right) \right) \\
-	\frac{\mu}{t_{max}} \ln\left(\frac{A-1}{A}\right) &= (A - 1) - A - (A-1) \ln\left(\frac{A-1}{A}\right) \\
-	\frac{\mu}{t_{max}} \ln\left(\frac{A-1}{A}\right) &= -1 - A\ln\left(\frac{A-1}{A}\right) +\ln\left(\frac{A-1}{A}\right) \\
-	\frac{\mu}{t_{max}} &= 1 - \frac{1}{\ln\left(\frac{A-1}{A}\right)} - A \\
-	\frac{1}{\ln\left(\frac{A-1}{A}\right)} &= 1 - \frac{\mu}{t_{max}} - A \\
-	\frac{1}{\ln\left(1 - \frac{1}{A}\right)} &= 1 - \frac{\mu}{t_{max}} - A \\
-	%1 &= \frac{A-1}{A} - \frac{A-1}{A}\ln\left(\frac{A-1}{A}\right) - \frac{\mu}{t_{max}}\ln\left(\frac{A-1}{A}\right) \\
-	%A &= A-1 - (A-1)\ln\left(\frac{A-1}{A}\right) - A\frac{\mu}{t_{max}}\ln\left(\frac{A-1}{A}\right) \\
-	%A &= A - A\ln\left(\frac{A-1}{A}\right) - \frac{A \mu}{t_{max}}\ln\left(\frac{A-1}{A}\right) - 1 + \ln\left(\frac{A-1}{A}\right) \\
-	%A &= A \left(1 - ln\left(\frac{A-1}{A}\right) - \frac{\mu}{t_{max}}\ln\left(\frac{A-1}{A}\right)\right) - 1 + \ln\left(\frac{A-1}{A}\right) \\
-	%1 - \ln\left(\frac{A-1}{A}\right) &= A \left(- ln\left(\frac{A-1}{A}\right) - \frac{\mu}{t_{max}}\ln\left(\frac{A-1}{A}\right)\right)  \\
-	%1 &= \ln\left(\frac{A-1}{A}\right) - A\ln\left(\frac{A-1}{A}\right) -A\frac{\mu}{t_{max}}\ln\left(\frac{A-1}{A}\right) \\
-	%1 &= \ln\left(\frac{A-1}{A}\right) \left(1 - A - A\frac{\mu}{t_{max}}\right) \\
-	%\ln\left(\frac{A-1}{A}\right) &= \frac{1}{1 - A - A\frac{\mu}{t_{max}}} \\
-	%\ln(A-1) - \ln(A) &= \frac{1}{1 - A - A\frac{\mu}{t_{max}}} \\
-\end{align*}
-
-\begin{align*}
-	-\lambda t_{max} &= \ln\left(\frac{A - 1}{A}\right) \\
-	t_{max} &= \frac{-1}{\lambda} \ln\left(\frac{A - 1}{A}\right) \\
+	\mu &= 12 \\
+	12 &= \frac{1}{\lambda} \\
+	\lambda &= \frac{1}{12} \\
 	\\
-	\mu &= A \left(\frac{1}{\lambda} - \frac{-1}{\lambda} \ln\left(\frac{A - 1}{A}\right) e^{-\lambda \frac{-1}{\lambda} \ln\left(\frac{A - 1}{A}\right)} - \frac{e^{-\lambda \frac{-1}{\lambda} \ln\left(\frac{A - 1}{A}\right)}}{\lambda}\right) \\
-	\mu &= A \left(\frac{1}{\lambda} + \frac{1}{\lambda} \ln\left(\frac{A - 1}{A}\right) e^{\ln\left(\frac{A - 1}{A}\right)} - \frac{e^{\ln\left(\frac{A - 1}{A}\right)}}{\lambda}\right) \\
-	\mu &= A \left(\frac{1}{\lambda} + \frac{1}{\lambda} \ln\left(\frac{A - 1}{A}\right) \left(\frac{A - 1}{A}\right) - \frac{A - 1}{A \lambda}\right) \\
-	\mu &= \frac{A}{\lambda} + \frac{A - 1}{\lambda} \ln\left(\frac{A - 1}{A}\right) - \frac{A - 1}{\lambda} \\
-	\mu &= \frac{1}{\lambda} + \frac{A - 1}{\lambda} \ln\left(\frac{A - 1}{A}\right) \\
-	\lambda &= \frac{1}{\mu} + \frac{A - 1}{\mu} \ln\left(\frac{A - 1}{A}\right) \\
-	\\
-	\lambda &= \frac{-1}{t_{max}} \ln\left(\frac{A - 1}{A}\right) \\
-	\frac{-1}{t_{max}} \ln\left(\frac{A - 1}{A}\right) &= \frac{1}{\mu} + \frac{A - 1}{\mu} \ln\left(\frac{A - 1}{A}\right) \\
-	\frac{-\mu}{t_{max}} \ln\left(\frac{A - 1}{A}\right) &= 1 + A \ln\left(\frac{A - 1}{A}\right) - \ln\left(\frac{A - 1}{A}\right) \\
+	%f(t) &= \frac{1}{12} e^{\frac{-t}{12}} \\
+	f(t) &= \frac{1}{12} e^{-t/12} \\
+	F(T) &= 1 - e^{-T/12} \\
+	T(F) &= -12 \ln(1 - F)
 \end{align*}
 
 \end{document}

@@ -8,25 +8,27 @@ class rand16bit:
     c = 3517
     k = 2**15
 
-    ## Initialize with pseudo-random number up to n
+    ## Initialize with pseudo-random numbers up to n
     def __init__(self, n, x_0 = 1000):
         self.x = [x_0]
-        for i in range(1, n):
-            self.x.append( (self.a*self.x[i-1] + self.c) % self.k )
+        self.grow(n)
 
-    ## Print array fo pseudo-random number
+    ## Grow array of pseudo-random numbers to size n
+    def grow(self, n):
+        while (len(self.x) <= n):
+            self.x.append( (self.a*self.x[len(self.x) - 2] + self.c) % self.k )
+
+    ## Print array fo pseudo-random numbers
     def print(self):
         for i in range(len(self.x)):
             print("[{:4d}]: {:d}".format(i, self.x[i]))
 
     ## Get pseudo-random number i
     def getX(self, i):
-        while (len(self.x) <= i):
-            self.x.append( (self.a*self.x[len(self.x) - 2] + self.c) % self.k )
+        self.grow(i)
         return self.x[i]
 
     ## Get pseudo-random probablity i
     def getU(self, i):
-        while (len(self.x) <= i):
-            self.x.append( (self.a*self.x[len(self.x) - 2] + self.c) % self.k )
+        self.grow(i)
         return self.x[i]/self.k
