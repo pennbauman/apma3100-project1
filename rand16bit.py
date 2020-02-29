@@ -9,7 +9,7 @@ class rand16bit:
     k = 2**15
 
     ## Initialize with pseudo-random numbers up to n
-    def __init__(self, n, x_0 = 1000):
+    def __init__(self, n = 1, x_0 = 1000):
         self.x = [x_0]
         self.grow(n)
 

@@ -39,12 +39,13 @@ def index(i, j):
 ### Generate table of random values
 rands = rand16bit(n*(num_calls+1))
 
-## Print random values
-if (prints%2 == 1):
+### Print random values
+if (prints%1 == 1):
         for i in range(n*(num_calls+1)):
             for j in range(num_calls+1):
                 print(str(rands.getX(index(i, j))))
             print()
+
 
 
 ### Simulate calls
@@ -54,12 +55,12 @@ for i in range(n):
     ## Initialize trial
     if (prints > 1):
         print("trial: " + str(i))
-    time = t_dial
+    time = 0.0
     record = ""
     record_code = ""
 
-    ## Interate over call attempts
     for j in range(num_calls):
+        time += t_dial
 
         ## Line is busy
         if (rands.getU(index(i, j)) < p_busy):
