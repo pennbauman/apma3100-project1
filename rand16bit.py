@@ -28,7 +28,17 @@ class rand16bit:
         self.grow(i)
         return self.x[i]
 
+    ## Get next pseudo-random number
+    def nextX(self):
+        return self.getX(len(self.x))
+
     ## Get pseudo-random probablity i
     def getU(self, i):
+        print(i)
         self.grow(i)
         return self.x[i]/self.k
+
+    ## Get next pseudo-random probablity
+    def nextU(self):
+        # print(len(self.x))
+        return self.getU(len(self.x))
