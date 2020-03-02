@@ -19,11 +19,9 @@ t_end = 1
 p_busy = 0.2
 p_unanswered = 0.3 + p_busy
 ## Output settings
-prints = 0
+prints = 1
     # 0 none
-    # 1 pseudo-random numbers
-    # 2 results
-    # 3 all
+    # 1 results
 
 
 
@@ -33,9 +31,9 @@ def answer_time(x):
     return -12 * log(1 - x*(1 - exp(-25/12)))
 
 
+
 ### Generate table of random values
 rands = rand16bit()
-
 
 
 ### Simulate calls
@@ -43,7 +41,7 @@ results = open("results.csv", "w")
 results.write("trial, time, calls code, call 0, call 1, call 2, call 3\n")
 for i in range(n):
     ## Initialize trial
-    if (prints > 1):
+    if (prints == 1):
         print("trial: " + str(i))
     time = 0.0
     record = ""
@@ -58,28 +56,29 @@ for i in range(n):
             time += t_busy + t_end
             record += ", busy"
             record_code += "b"
-            if (prints > 1):
-                print ("    call " + str(j) + " busy")
+            if (prints == 1):
+                print("    call " + str(j) + " busy (" + str(current_p) + ")")
 
         ## Call is unanswered
         elif (current_p < p_unanswered):
             time += t_ring + t_end
             record += ", unanswered"
             record_code += "u"
-            if (prints > 1):
-                print ("    call " + str(j) + " unanswered")
+            if (prints == 1):
+                print("    call " + str(j) + " unanswered (" + str(current_p) + ")")
 
         ## Call is answered
         else:
-            time += answer_time(rands.nextU())
+            answer_time_p = rands.nextU()
+            time += answer_time(answer_time_p)
             record += ", answered"
             record_code += "a"
-            if (prints > 1):
-                print ("    call " + str(j) + " answered")
+            if (prints == 1):
+                print("    call " + str(j) + " answered (" + str(current_p) + ", " + str(answer_time_p) + ")")
             break
 
     ## Output final trail results
-    if (prints > 1):
+    if (prints == 1):
         print("  total time: " + str(time))
     while (len(record_code) < 4):
         record_code += "-"

@@ -34,7 +34,6 @@ class rand16bit:
 
     ## Get pseudo-random probablity i
     def getU(self, i):
-        print(i)
         self.grow(i)
         return self.x[i]/self.k
 
