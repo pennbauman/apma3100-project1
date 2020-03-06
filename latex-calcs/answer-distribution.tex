@@ -52,7 +52,7 @@ Forcing time below a maximum:
 	F(X) &= \int_{0}^{x} f(t) dt \\
 	F(t_{max}) &= 1 \\
 	\\
-	F(T) &= \int_{0}^{x} f(t) dt \\
+	F(X) &= \int_{0}^{x} f(t) dt \\
 		&= \int_{0}^{x} A \lambda e^{-\lambda t} dt \\
 		&= \left[-A e^{-\lambda t}\right]_{0}^{x} \\
 		&= A\left(-e^{-\lambda x} + e^{-\lambda 0}\right) \\
@@ -63,7 +63,7 @@ Forcing time below a maximum:
 	A &= \frac{1}{1 - e^{-\lambda t_{max}}}
 \end{align*}
 
-Determine $F^-1(X)$:
+Determine $X(F)$:
 \begin{align*}
 	%F(T) &= 1 - e^{-\lambda T} \\
 	%1 - F &= e^{-\lambda T} \\
@@ -76,7 +76,7 @@ Determine $F^-1(X)$:
 	e^{-\lambda x} &= 1 - \frac{F}{A} \\
 	\ln\left(e^{-\lambda x}\right) &= \ln\left(1 - \frac{F}{A}\right) \\
 	-\lambda x &= \ln\left(1 - \frac{F}{A}\right) \\
-	F^-1(X) &= \frac{-1}{\lambda}\ln\left(1 - \frac{F}{A}\right) \\
+	X(F) &= \frac{-1}{\lambda}\ln\left(1 - \frac{F}{A}\right) \\
 	%
 	%F(1 - e^{-25/12}) &= 1 - e^{\frac{-T}{12}} \\
 	%e^{\frac{-T}{12}} &= 1 - F(1 - e^{-25/12}) \\
