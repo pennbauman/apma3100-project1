@@ -18,27 +18,27 @@
 
 Basic Requirements:
 \begin{align*}
-	f(t) &= \lambda e^{-\lambda t} \\
-	F(T) &= \int_{0}^{T} f(t) dt \\
+	f(x) &= \lambda e^{-\lambda x} \\
+	F(X) &= \int_{0}^{x} f(t) dt \\
 	F(\infty) &= 1 \\
-	E[f(t)] &= \mu \\
+	E[f(x)] &= \mu \\
 \end{align*}
 Determine $F(T)$:
 \begin{align*}
-	F(T) &= \int_{0}^{T} f(t) dt \\
-		&= \int_{0}^{T} \lambda e^{-\lambda t} dt \\
-		&= \left[-e^{-\lambda t}\right]_{0}^{T} \\
-		&= -e^{-\lambda T} + e^{-\lambda 0} \\
-	F(T) &= 1 - e^{-\lambda T}
+	F(X) &= \int_{0}^{x} f(t) dt \\
+		&= \int_{0}^{x} \lambda e^{-\lambda t} dt \\
+		&= \left[-e^{-\lambda t}\right]_{0}^{x} \\
+		&= -e^{-\lambda x} + e^{-\lambda 0} \\
+	F(X) &= 1 - e^{-\lambda x}
 \end{align*}
 Determine $\lambda$:
 \begin{align*}
-	E[f(t)] &= \int_{0}^{\infty} t f(t) dt \\
-		&= \int_{0}^{\infty} \lambda t e^{-\lambda t} dt \\
-	u = t & \ \ \ \ \ \ \ \ \ dv = \lambda e^{-\lambda t} dt \\
-	du  =  dt & \ \ \ \ \ \ \ \ \ v = -e^{-\lambda t} \\
-		&= \left[-t e^{-\lambda t}\right]_{0}^{\infty} - \int_{0}^{\infty} - e^{-\lambda t} dt \\
-		&= \left[-t e^{-\lambda t} - \frac{e^{-\lambda t}}{\lambda}\right]_{0}^{\infty} \\
+	E[f(x)] &= \int_{0}^{\infty} x f(x) dx \\
+		&= \int_{0}^{\infty} \lambda x e^{-\lambda x} dx \\
+	u = x & \ \ \ \ \ \ \ \ \ dv = \lambda e^{-\lambda x} dx \\
+	du  =  dx & \ \ \ \ \ \ \ \ \ v = -e^{-\lambda x} \\
+		&= \left[-x e^{-\lambda x}\right]_{0}^{\infty} - \int_{0}^{\infty} - e^{-\lambda x} dx \\
+		&= \left[-x e^{-\lambda x} - \frac{e^{-\lambda x}}{\lambda}\right]_{0}^{\infty} \\
 		&= -\infty e^{-\lambda \infty} - \frac{e^{-\lambda \infty}}{\lambda}
 		+ 0 e^{-\lambda 0} + \frac{e^{-\lambda 0}}{\lambda} \\
 		&= 0 - 0 + 0 + \frac{1}{\lambda} \\
@@ -48,22 +48,22 @@ Determine $\lambda$:
 
 Forcing time below a maximum:
 \begin{align*}
-	f(t) &= A \lambda e^{-\lambda t} \\
-	F(T) &= \int_{0}^{T} f(t) dt \\
+	f(x) &= A \lambda e^{-\lambda x} \\
+	F(X) &= \int_{0}^{x} f(t) dt \\
 	F(t_{max}) &= 1 \\
 	\\
-	F(T) &= \int_{0}^{T} f(t) dt \\
-		&= \int_{0}^{T} A \lambda e^{-\lambda t} dt \\
-		&= \left[-A e^{-\lambda t}\right]_{0}^{T} \\
-		&= A\left(-e^{-\lambda T} + e^{-\lambda 0}\right) \\
-	F(T) &= A\left(1 - e^{-\lambda T}\right) \\
+	F(T) &= \int_{0}^{x} f(t) dt \\
+		&= \int_{0}^{x} A \lambda e^{-\lambda t} dt \\
+		&= \left[-A e^{-\lambda t}\right]_{0}^{x} \\
+		&= A\left(-e^{-\lambda x} + e^{-\lambda 0}\right) \\
+	F(X) &= A\left(1 - e^{-\lambda x}\right) \\
 	\\
 	F(t_{max}) &= A\left(1 - e^{-\lambda t_{max}}) \\
 	1 &= A\left(1 - e^{-\lambda t_{max}}) \\
 	A &= \frac{1}{1 - e^{-\lambda t_{max}}}
 \end{align*}
 
-Determine $T(F)$:
+Determine $F^-1(X)$:
 \begin{align*}
 	%F(T) &= 1 - e^{-\lambda T} \\
 	%1 - F &= e^{-\lambda T} \\
@@ -71,12 +71,12 @@ Determine $T(F)$:
 	%-\lambda T &= \ln(1 - F) \\
 	%T(F) &= \frac{-\ln(1 - F)}{\lambda} \\
 	%
-	F(T) &= A\left(1 - e^{-\lambda T}\right) \\
-	\frac{F}{A} &= 1 - e^{-\lambda T} \\
-	e^{-\lambda T} &= 1 - \frac{F}{A} \\
-	\ln\left(e^{-\lambda T}\right) &= \ln\left(1 - \frac{F}{A}\right) \\
-	-\lambda T &= \ln\left(1 - \frac{F}{A}\right) \\
-	T(F) &= \frac{-1}{\lambda}\ln\left(1 - \frac{F}{A}\right) \\
+	F(X) &= A\left(1 - e^{-\lambda x}\right) \\
+	\frac{F}{A} &= 1 - e^{-\lambda x} \\
+	e^{-\lambda x} &= 1 - \frac{F}{A} \\
+	\ln\left(e^{-\lambda x}\right) &= \ln\left(1 - \frac{F}{A}\right) \\
+	-\lambda x &= \ln\left(1 - \frac{F}{A}\right) \\
+	F^-1(X) &= \frac{-1}{\lambda}\ln\left(1 - \frac{F}{A}\right) \\
 	%
 	%F(1 - e^{-25/12}) &= 1 - e^{\frac{-T}{12}} \\
 	%e^{\frac{-T}{12}} &= 1 - F(1 - e^{-25/12}) \\
@@ -93,15 +93,15 @@ Final Equations:
 	A &= \frac{1}{1 - e^{-25/12}} \\
 	\\
 	%f(t) &= \frac{1}{12} e^{\frac{-t}{12}} \\
-	f(t) &= A \lambda e^{-\lambda t} \\
-	f(t) &= \frac{1}{12 (1 - e^{-25/12})} e^{-t/12} \\
+	f(x) &= A \lambda e^{-\lambda x} \\
+	f(x) &= \frac{1}{12 (1 - e^{-25/12})} e^{-x/12} \\
 	\\
-	F(T) &= A\left(1 - e^{-\lambda T}\right) \\
-	F(T) &= \frac{1}{1 - e^{-25/12}}\left(1 - e^{\frac{-T}{12}}\right) \\
+	F(X) &= A\left(1 - e^{-\lambda X}\right) \\
+	F(X) &= \frac{1}{1 - e^{-25/12}}\left(1 - e^{\frac{-X}{12}}\right) \\
 	%F(T) &= 1 - e^{-T/12} \\
 	\\
-	T(F) &= \frac{-1}{\lambda}\ln\left(1 - \frac{F}{A}\right) \\
-	T(F) &= -12 \ln\left(1 - F(1 - e^{-25/12})\right) \\
+	X(F) &= \frac{-1}{\lambda}\ln\left(1 - \frac{F}{A}\right) \\
+	X(F) &= -12 \ln\left(1 - F(1 - e^{-25/12})\right) \\
 \end{align*}
 
 
